@@ -101,7 +101,7 @@ def plot_metrics(train_losses, val_losses, val_accuracies, test_losses=None, tes
     plt.tight_layout()
     plt.savefig("full_training_progress.png")
     plt.show()
-
+# https://huggingface.co/blog/ImranzamanML/fine-tuning-1b-llama-32-a-comprehensive-article
 def setup_llama_with_lora():
     model_name = "unsloth/Llama-3.2-1B-bnb-4bit"
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
