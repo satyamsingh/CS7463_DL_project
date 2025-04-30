@@ -102,6 +102,7 @@ def plot_metrics(train_losses, val_losses, val_accuracies, test_losses=None, tes
     plt.savefig("full_training_progress.png")
     plt.show()
 
+# https://github.com/unslothai/unsloth
 def setup_qwen_with_lora():
     # model_name = "unsloth/qwen-3.2-1B-bnb-4bit"
     model_name = "Qwen/Qwen1.5-0.5B"
