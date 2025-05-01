@@ -128,7 +128,7 @@ training_args = SFTConfig(
     overwrite_output_dir=True,
     dataset_text_field = "text",
     per_device_train_batch_size = 4,
-    gradient_accumulation_steps = 4, # Use GA to mimic batch size!
+    gradient_accumulation_steps = 4, 
     per_device_eval_batch_size=16,
     eval_strategy="steps",
     eval_steps = 200,
@@ -138,12 +138,12 @@ training_args = SFTConfig(
     warmup_steps = 50,
     logging_strategy="steps",
     logging_steps=1,
-    num_train_epochs = 1, # Set this for 1 full training run.
+    num_train_epochs = 1, 
     learning_rate = 5e-5,
     optim = "adamw_8bit",
     weight_decay = 0.01,
-    lr_scheduler_type = "linear",
-    report_to = "tensorboard", # Use this for WandB etc
+    lr_scheduler_type = "cosine",
+    report_to = "tensorboard",
 )
 
 trainer = SFTTrainer(
@@ -164,7 +164,6 @@ trainer = train_on_responses_only(
 trainer_stats = trainer.train()
 
 def extract_prediction(text):
-    # Extract content between <start_of_turn>model and <end_of_turn>
     match = re.search(r"<start_of_turn>model\s*(.*?)<end_of_turn>", text, re.DOTALL)
     if match:
         prediction = match.group(1).strip().lower()
